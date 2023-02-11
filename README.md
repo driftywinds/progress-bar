@@ -1,5 +1,5 @@
-# [git.io/year-progress](https://git.io/year-progress)
+# [[https://leehadassin.github.io/year-progress)](https://leehadassin.github.io/year-progress)
 
-A progress bar that moves faster than you'd like.
+A progress bar for the current year. 
 
-Inspired by [@year_progress](https://twitter.com/year_progress) on Twitter.
+forked from diogocampos/year-progress.
