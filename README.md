@@ -1,5 +1,5 @@
-# [[https://leehadassin.github.io/year-progress)](https://leehadassin.github.io/year-progress)
+# [[https://leehadassin.github.io/life-progress)](https://leehadassin.github.io/life-progress)
 
-A progress bar for the current year. 
+A (somewhat macabre) progress bar for the progress through your life. 
 
 forked from diogocampos/year-progress.
