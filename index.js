@@ -4,12 +4,15 @@ const UPDATES_PER_SECOND = 30;
 
 document.addEventListener('DOMContentLoaded', () => {
   const $title = $('#title');
+  const $tabname = $('#tabname');
   const $bar = $('#progress-bar');
   const $percentage = $('#progress-percentage');
 
+
   setInterval(() => {
-    const percentage = getLifeProgress();
-    $title.innerText = 'Memento Mori';
+    const percentage = getProgress('startdate','enddate');
+    $tabname.innerText = GetURLParameter('title');
+    $title.innerText = GetURLParameter('title');
     $bar.style.setProperty('width', `${percentage}%`);
     $percentage.innerText = percentage.toFixed(10);
   }, 1000 / UPDATES_PER_SECOND);
@@ -21,15 +24,32 @@ const $ = (selector) => document.querySelector(selector);
 
 function getYearProgress() {
   const year = new Date().getFullYear();
-  const start = new Date(year,0,1,0,0,0,0);
-  const end = new Date(year+1,0,1,0,0,0,0);
-  const percentage = 100 * ((Date.now() - start) / (end - start));
-  return { year, percentage };
+  const startdate = new Date(year,0,1,0,0,0,0);
+  const enddate = new Date(year+1,0,1,0,0,0,0);
+  const percentage = getProgress(startdate, enddate);
+  return percentage;
 };
 
-function getLifeProgress() {
-  const born = new Date(1986,2,21);
-  const death = new Date(2064,6,15);
-  const percentage = 100 * ((Date.now() - born) / (death - born));
+function getProgress(startdateparam, enddateparam) {
+  const startdate = parsedate(GetURLParameter(startdateparam));
+  const enddate = parsedate(GetURLParameter(enddateparam));
+  const percentage = 100 * ((Date.now() - startdate) / (enddate - startdate));
   return percentage;
-}
+};
+
+function parsedate(yyyydashmmdashdd) {
+  const parseddate = new Date(yyyydashmmdashdd);
+  return parseddate;
+};
+
+function GetURLParameter(sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1].replace("%20"," ");
+        };
+    };
+};

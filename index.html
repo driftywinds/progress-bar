@@ -4,16 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Life Progress</title>
+    <title id="tabname">Progress</title>
     <script src="./index.js" defer></script>
     <link rel="stylesheet" href="./index.css" />
   </head>
 
   <body>
-    <h1 id="title">Year Progress</h1>
+    <h1 id="title">Progress</h1>
     <div class="progress-bar-container">
       <div id="progress-bar"></div>
     </div>
     <h2><span id="progress-percentage"></span>%</h2>
+    <form method="get" enctype="text/plain">
+      <ul>
+          <label for="Settitle">Set Title:</label>
+          <input type="text" id="title" name="title" />
+          <label for="startdate">Start Date:</label>
+          <input type="text" id="startdate" name="startdate" />
+          <label for="enddate">End Date:</label>
+          <textarea id="text" id="enddate" name="enddate"></textarea>
+        <label for="yearprogress">Year Progress</label>
+        <button type="submit">Go</button>
+        <button type="submit">Year Progress</button>
+      </ul>
+    </form>
   </body>
 </html>
