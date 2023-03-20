@@ -1,14 +1,14 @@
 "use strict";
 
-const UPDATES_PER_SECOND = 30;
+var UPDATES_PER_SECOND = 30;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const $title = $('#title');
-  const $bar = $('#progress-bar');
-  const $percentage = $('#progress-percentage');
+  var $title = $('#title');
+  var $bar = $('#progress-bar');
+  var $percentage = $('#progress-percentage');
 
   setInterval(() => {
-    const { year, percentage } = getYearProgress();
+    var { year, percentage } = getYearProgress();
     $title.innerText = year;
     $bar.style.setProperty('width', `${percentage}%`);
     $percentage.innerText = percentage.toFixed(10);
@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Helpers
 
-const $ = (selector) => document.querySelector(selector);
+var $ = (selector) => document.querySelector(selector);
 
 function getYearProgress() {
-  const year = new Date().getFullYear();
-  const start = new Date(year,0,1,0,0,0,0);
-  const end = new Date(year+1,0,1,0,0,0,0);
-  const percentage = 100 * ((Date.now() - start) / (end - start));
+  var year = new Date().getFullYear();
+  var start = new Date(year,0,1,0,0,0,0);
+  var end = new Date(year+1,0,1,0,0,0,0);
+  var percentage = 100 * ((Date.now() - start) / (end - start));
   return { year, percentage };
-};
+}
