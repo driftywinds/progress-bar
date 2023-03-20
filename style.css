@@ -10,14 +10,14 @@ html {
 }
 
 :root {
-  --bg-color: #eee;
-  --text-color: #111;
+  --bg-color: #111;
+  --text-color: #eee;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --bg-color: #111;
-    --text-color: #eee;
+    --bg-color: #eee;
+    --text-color: #111;
   }
 }
 
