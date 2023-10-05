@@ -33,15 +33,15 @@
 
       function getProgress(startdateparam, enddateparam) {
         "use strict";
-        const startdate = parsedate(GetURLParameter(startdateparam));
-        const enddate = parsedate(GetURLParameter(enddateparam));
-        const percentage = 100 * ((Date.now() - startdate) / (enddate - startdate));
+        var startdate = parsedate(GetURLParameter(startdateparam));
+        var enddate = parsedate(GetURLParameter(enddateparam));
+        var percentage = 100 * ((Date.now() - startdate) / (enddate - startdate));
         return percentage;
       };
 
       function parsedate(yyyydashmmdashdd) {
         "use strict";
-        const parseddate = new Date(yyyydashmmdashdd);
+        var parseddate = new Date(yyyydashmmdashdd);
         return parseddate;
       };
 
