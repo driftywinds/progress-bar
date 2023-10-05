@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script>
+      const UPDATES_PER_SECOND = 30;
+
+      document.addEventListener('DOMContentLoaded', () => {
+        "use strict";
+        var $title = $('#title');
+        var $bar = $('#progress-bar');
+        var $percentage = $('#progress-percentage');
+
+
+        setInterval(() => {
+          "use strict";
+          var percentage = getProgress('startdate','enddate');
+          $title.innerText = GetURLParameter('title');
+          document.title = GetURLParameter('title');
+          $bar.style.setProperty('width', "".concat(percentage, "%"));
+          $percentage.innerText = percentage.toFixed(10);
+        }, 1000 / UPDATES_PER_SECOND);
+      });
+
+      // Helpers
+
+      var $ = function $(selector) {
+        "use strict";
+        return document.querySelector(selector);
+      };
+
+      function getProgress(startdateparam, enddateparam) {
+        "use strict";
+        const startdate = parsedate(GetURLParameter(startdateparam));
+        const enddate = parsedate(GetURLParameter(enddateparam));
+        const percentage = 100 * ((Date.now() - startdate) / (enddate - startdate));
+        return percentage;
+      };
+
+      function parsedate(yyyydashmmdashdd) {
+        "use strict";
+        const parseddate = new Date(yyyydashmmdashdd);
+        return parseddate;
+      };
+
+      function GetURLParameter(sParam) {
+        "use strict";  
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) 
+              {
+                  return sParameterName[1].replace("%20"," ");
+              };
+          };
+      };
+      </script>
+      <link rel="stylesheet" href="./style.css" />
+    </head>
+
+  <body>
+    <h1 id="title"></h1>
+    <div class="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+    <h2><span id="progress-percentage"></span>%</h2>
+  </body>
+</html>
