@@ -7,14 +7,14 @@
     <script>
       const UPDATES_PER_SECOND = 30;
 
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('DOMContentLoaded', function () {
         "use strict";
         var $title = $('#title');
         var $bar = $('#progress-bar');
         var $percentage = $('#progress-percentage');
 
 
-        setInterval(() => {
+        setInterval(function () {
           "use strict";
           var percentage = getProgress('startdate','enddate');
           $title.innerText = GetURLParameter('title');
