@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script>
+      var UPDATES_PER_SECOND = 30;
+
+      document.addEventListener('DOMContentLoaded', function () {
+      "use strict";
+      var $title = $('#title');
+      var $bar = $('#progress-bar');
+      var $percentage = $('#progress-percentage');
+      
+      setInterval(function () {
+        "use strict";
+        var _getYearProgress = getYearProgress(),
+          year = _getYearProgress.year,
+          percentage = _getYearProgress.percentage;
+        $title.innerText = year;
+        document.title = year;
+        $bar.style.setProperty('width', "".concat(percentage, "%"));
+        $percentage.innerText = percentage.toFixed(10);
+        }, 1000 / UPDATES_PER_SECOND);
+      }); 
+
+      // Helpers
+
+      var $ = function $(selector) {
+        "use strict";
+        return document.querySelector(selector);
+      };
+
+      function getYearProgress() {
+        "use strict";
+        var year = new Date().getFullYear();
+        var start = new Date(year, 0, 1, 0, 0, 0, 0);
+        var end = new Date(year + 1, 0, 1, 0, 0, 0, 0);
+        var percentage = 100 * ((Date.now() - start) / (end - start));
+        return {    
+          year: year,
+          percentage: percentage
+        };
+      };
+    </script>
+    <script>
+      var UPDATES_PER_SECOND = 30;
+
+      document.addEventListener('DOMContentLoaded', function () {
+      "use strict";
+      var $title = $('#title');
+      var $bar = $('#progress-bar');
+      var $percentage = $('#progress-percentage');
+      
+      setInterval(function () {
+        "use strict";
+        var _getMonthProgress = getMonthProgress(),
+          month = _getMonthProgress.month,
+          percentage = _getMonthProgress.percentage;
+        $title.innerText = month;
+        document.title = month;
+        $bar.style.setProperty('width', "".concat(percentage, "%"));
+        $percentage.innerText = percentage.toFixed(10);
+        }, 1000 / UPDATES_PER_SECOND);
+      }); 
+
+      // Helpers
+
+      var $ = function $(selector) {
+        "use strict";
+        return document.querySelector(selector);
+      };
+
+      function getMonthProgress() {
+        "use strict";
+        var year = new Date().getFullYear();
+        var month = new Date().getMonth();
+        var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        if (month==11) {
+          var start = new Date(year, month, 1, 0, 0, 0, 0);
+          var end = new Date(year+1, 0, 1, 0, 0, 0, 0);
+        } else {
+          var start = new Date(year, month, 1, 0, 0, 0, 0);
+          var end = new Date(year, month+1, 1, 0, 0, 0, 0);
+        }
+        var percentage = 100 * ((Date.now() - start) / (end - start));
+        return {    
+          month: monthNames[month],
+          percentage: percentage
+        };
+      };
+    </script>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <h1 id="title"></h1>
+    <div class="progress-bar-container">
+      <div id="progress-bar"></div>
+    </div>
+    <h2><span id="progress-percentage"></span>%</h2>
+  </body>
+</html>
